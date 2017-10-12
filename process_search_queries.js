@@ -35,7 +35,7 @@ parser.on('finish', function () {
     .pipe(process.stdout)
 })
 
-let fileName = '20170829__search_queries__all_traffic.csv'
+let fileName = '20171011_encore.csv'
 
 let input = fs.createReadStream(fileName)
 
@@ -44,18 +44,23 @@ input.pipe(parser)
 function processRecord (record) {
   // e.g., C__Sukulele__Orightresult__U?lang=eng&suite=def, but also C__Sukulele?, ?lang=eng...
   let [, rawQuery] = record[0].split('__')
+
   let query = rawQuery
     .substr(1) // Remove leading 'C'
     .replace(/[. ]$/, '') // Remove trailing '.' and space
     .split('?')[0] // Get rid of query_string
     .replace('Pw==', '') // removing weird '?' encoding (simpler than replacing)
     .replace('Lw==', '/') // replace '/' for it's weird encoding
+    .replace('l:eng', '') // replace English language specifier (but may be useful to know sometimes)
+    .replace(/[ ]+/g, ' ') // compress spaces
     .toLowerCase()
+
+  query = config.mappedTerms[query]
 
   return [query, parseInt(record[1])]
 }
 
-let config = setupTypesData(require('./config.json'))
+let config = processConfig(require('./config.json'))
 let types = config.query_types
 
 function queryType (query) {
@@ -67,10 +72,27 @@ function queryType (query) {
   return 'title query'
 }
 
+function processConfig (config) {
+  setupTypesData(config)
+  setupMappedTerms(config)
+  return config
+}
+
 function setupTypesData (config) {
   let types = config.query_types
   for (let type in types) {
     types[type] = new Set(types[type])
   }
-  return types
+}
+
+function setupMappedTerms (config) {
+  let mappedTerms = new Proxy({}, { get: (target, name) => name in target ? target[name] : name })
+
+  for (let [term, synonyms] of Object.entries(config.termMaps)) {
+    for (let synonym of synonyms) {
+      mappedTerms[synonym] = term
+    }
+  }
+
+  config.mappedTerms = mappedTerms
 }

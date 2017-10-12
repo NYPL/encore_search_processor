@@ -1,7 +1,7 @@
 {
   "query_types": {
     "genre_or_subject": [
-      "cycling", "origami", "gmat", "gospel dvd", "horror", "chess", "action and adventure fiction", "crochet", "gre", "minecraft", "vegan", "jazz ensemble", "foreign film features", "erotic fiction", "science fiction", "school", "baseball", "witchcraft", "new york city", "rock music", "occultism and science", "drama", "tyranny", "the holocaust", "action and adventure television programs", "live music 1971-1980", "manhattan beach", "japan travel", "buddhism", "lsat", "musical film", "dvd in italian", "urban fiction", "consumer reports", "ballet history", "french songs", "latin music cd", "economics", "erotic films", "films", "baking", "germany", "programming", "film noir", "new horror fiction", "javascript", "sport", "biography"
+      "cycling", "origami", "gmat", "gospel dvd", "horror", "chess", "action and adventure fiction", "crochet", "gre", "minecraft", "vegan", "jazz ensemble", "foreign film features", "erotic fiction", "science fiction", "school", "baseball", "witchcraft", "new york city", "rock music", "occultism and science", "drama", "tyranny", "the holocaust", "action and adventure television programs", "live music 1971-1980", "japan travel", "buddhism", "lsat", "musical film", "dvd in italian", "urban fiction", "consumer reports", "ballet history", "french songs", "latin music cd", "economics", "erotic films", "films", "baking", "germany", "programming", "film noir", "new horror fiction", "javascript", "sport", "biography"
     ],
     "publisher": [
        "criterion collection dvd", "acorn media", "cohen media group dvd", "criterion collection", "criterion", "lions gate dvd", "bbc", "dc comics"
@@ -9,13 +9,13 @@
     "format": [
       "dvd", "dvds", "dvd 2017", "2017 dvd", "audio books", "ebooks", "movies", "audiobooks", "large print", "blu ray", "comic books", "graphic novels", "books", "audio book", "audiobook"
     ],
-    "navigational": [
+    "informational": [
       "kanopy", "lynda", "lynda.com", "google", "google.com", "new york shakespeare festival", "renew", "locations", "kids events", "calendar of events", "adult events", "interlibrary loan", "library card", "renew library card", "library hours"
     ]  
   },
-  "synonyms": {
+  "termMaps": {
     "dvd": ["dvds"],
-    "2017 dvd": ["dvd 2017"],
+    "dvd 2017": ["2017 dvd"],
     "audiobooks": ["/audio[ ]book[s]?/"]
   }
 }
